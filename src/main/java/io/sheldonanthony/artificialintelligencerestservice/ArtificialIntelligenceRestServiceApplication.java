@@ -20,7 +20,7 @@ public class ArtificialIntelligenceRestServiceApplication extends SpringBootServ
     @Bean
     ServletRegistrationBean servletRegistrationBean() {
         ServletRegistrationBean servlet = new ServletRegistrationBean(
-            new CamelHttpTransportServlet(), "/camel-rest-jpa/*");
+            new CamelHttpTransportServlet(), "/artificial-intelligence-restservice/*");
         servlet.setName("CamelServlet");
         return servlet;
     }
@@ -30,8 +30,8 @@ public class ArtificialIntelligenceRestServiceApplication extends SpringBootServ
         @Override
         public void configure() {
             restConfiguration()
-                .contextPath("/camel-rest-jpa").apiContextPath("/api-doc")
-                    .apiProperty("api.title", "Camel REST API")
+                .contextPath("/artificial-intelligence-restservice").apiContextPath("/api-doc")
+                    .apiProperty("api.title", "Artificial Intelligence Rest Services")
                     .apiProperty("api.version", "1.0")
                     .apiProperty("cors", "true")
                     .apiContextRouteId("doc-api")

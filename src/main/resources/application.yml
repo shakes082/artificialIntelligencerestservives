@@ -6,7 +6,7 @@ camel:
     servlet:
       mapping:
         enabled: true
-        context-path: /camel-rest-jpa/*
+        context-path: /artificial-intelligence-restservice/*
 
 logging:
   level:
