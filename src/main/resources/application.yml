@@ -1,0 +1,22 @@
+camel:
+  springboot:
+    # The Camel context name
+    name: CamelRestJpa
+  component:
+    servlet:
+      mapping:
+        enabled: true
+        context-path: /camel-rest-jpa/*
+
+logging:
+  level:
+    root: INFO
+
+spring:
+   main:
+     allow-bean-definition-overriding: true
+
+# The application configuration properties
+quickstart:
+  generateOrderPeriod: 10s
+  processOrderPeriod: 30s
