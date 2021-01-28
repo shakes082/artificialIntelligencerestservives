@@ -1,47 +1,17 @@
 package io.sheldonanthony.artificialintelligencerestservice;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.apache.camel.builder.RouteBuilder;
-import org.apache.camel.component.servlet.CamelHttpTransportServlet;
-import org.apache.camel.model.rest.RestBindingMode;
-import org.springframework.boot.web.servlet.ServletRegistrationBean;
-import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
-import org.springframework.context.annotation.Bean;
-import org.springframework.stereotype.Component;
 
 @SpringBootApplication
-public class ArtificialIntelligenceRestServiceApplication extends SpringBootServletInitializer {
+public class ArtificialIntelligenceRestServiceApplication{
 
-
-	public static void main(String[] args) {
-        SpringApplication.run(ArtificialIntelligenceRestServiceApplication.class, args);
-    }
+	private static Logger LOGGER = LogManager.getLogger(ArtificialIntelligenceRestServiceApplication.class);
 	
-    @Bean
-    ServletRegistrationBean servletRegistrationBean() {
-        ServletRegistrationBean servlet = new ServletRegistrationBean(
-            new CamelHttpTransportServlet(), "/artificial-intelligence-restservice/*");
-        servlet.setName("CamelServlet");
-        return servlet;
+	public static void main(String[] args){
+		LOGGER.info("Initialized ArtificialIntelligenceRestServiceApplication->main()");
+        SpringApplication.run(ArtificialIntelligenceRestServiceApplication.class, args);
+        LOGGER.info("Exited ArtificialIntelligenceRestServiceApplication->main()");
     }
-	@Component
-    class RestApi extends RouteBuilder {
-
-        @Override
-        public void configure() {
-            restConfiguration()
-                .contextPath("/artificial-intelligence-restservice").apiContextPath("/api-doc")
-                    .apiProperty("api.title", "Artificial Intelligence Rest Services")
-                    .apiProperty("api.version", "1.0")
-                    .apiProperty("cors", "true")
-                    .apiContextRouteId("doc-api")
-                .component("servlet")
-                .bindingMode(RestBindingMode.json);
-
-            rest("/artificialintelligencerestservice").description("A rest service that will provide value by computing, \n"
-            		+ "	performing voice or facial recognition, responding to human prompts, \n"
-            		+ "	and sense and monitor human activity.");
-        }
-    }
-
 }
