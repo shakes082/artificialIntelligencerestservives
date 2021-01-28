@@ -1,4 +1,4 @@
-package io.sheldonanthony.artificialintelligencerestservice.config;
+package io.sheldonanthony.artificialintelligencerestservice.service;
 
 import io.sheldonanthony.artificialintelligencerestservice.dtos.Ping;
 
