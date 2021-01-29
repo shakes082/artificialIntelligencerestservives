@@ -43,11 +43,34 @@ http://127.0.0.1:8080/artificialintelligence/api-doc
 
 ### Ping
 
-Get Url: http://127.0.0.1:8080/artificialintelligence/serverconfiguration/ping
+Rest Action: Get
+
+Url: http://127.0.0.1:8080/artificialintelligence/serverconfiguration/ping
 
 Expected USSDResponse:
 
 ```
 {
   "alive" : true
+}
+```
+
+
+### Detect Faces In A Base64 Encode Image
+
+Rest Action: Post
+
+Url: http://127.0.0.1:8080/artificialintelligence/vision/detectFaces
+
+Sample Request:
+{
+  uuid: "977f3840-61fe-11eb-ae93-0242ac130002",
+  base64EncodedImage: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVQYV2NgYAAAAAMAAWgmWQ0AAAAASUVORK5CYII="
+}
+
+Sample Response:
+
+```
+{
+  "detectedFaces" : false
 }
