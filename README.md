@@ -18,9 +18,9 @@ GIT
 
 ### Clone The Repository
 
-```git clone https://github.com/shakes082/ussdSolution.git```
+``` git clone https://github.com/shakes082/artificialintelligencerestservices.git ```
 
-```cd ussdSolution ```
+``` cd artificialintelligencerestservices ```
 
 ### Run the Application
 
