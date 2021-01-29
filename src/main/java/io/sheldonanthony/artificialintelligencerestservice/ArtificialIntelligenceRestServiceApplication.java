@@ -7,7 +7,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class ArtificialIntelligenceRestServiceApplication{
 
-	private static Logger LOGGER = LogManager.getLogger(ArtificialIntelligenceRestServiceApplication.class);
+	private static Logger LOGGER = 
+			LogManager.getLogger(ArtificialIntelligenceRestServiceApplication.class);
 	
 	public static void main(String[] args){
 		LOGGER.info("Initialized ArtificialIntelligenceRestServiceApplication->main()");
