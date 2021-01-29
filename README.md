@@ -92,9 +92,6 @@ Sample Response:
 
 ### Detect And Trace Faces In A Base64 Encoded Image
 
-![](https://images.unsplash.com/photo-1604426633861-11b2faead63c?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1900&q=80)`
-
-
 Rest Action: Post
 
 Url: http://127.0.0.1:8080/artificialintelligence/vision/detectAndTraceFaces
