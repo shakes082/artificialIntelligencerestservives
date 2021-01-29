@@ -43,6 +43,9 @@ Rest Endpoint API Docs:
 
 http://127.0.0.1:8080/artificialintelligence/api-doc
 
+
+## Server Configurations
+
 ### Ping
 
 Rest Action: Get
@@ -57,6 +60,7 @@ Expected USSDResponse:
 }
 ```
 
+## Vision
 
 ### Detect Faces In A Base64 Encode Image
 
