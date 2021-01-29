@@ -1,5 +1,17 @@
 package io.sheldonanthony.artificialintelligencerestservice.service;
+import java.awt.image.BufferedImage;
+import java.awt.image.DataBufferByte;
+import java.awt.image.RenderedImage;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.UncheckedIOException;
+import java.util.Base64;
+
+import javax.imageio.ImageIO;
 import org.opencv.core.Mat;
+import org.opencv.core.MatOfByte;
+import org.opencv.imgcodecs.Imgcodecs;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -50,10 +62,44 @@ public class ArtificialIntelligenceServiceImpl implements ArtificialIntelligence
 	@Override
 	public DetectAndTraceFacesResponse detectAndTraceFaces(DetectAndTraceFacesRequest 
 			detectAndTraceFacesRequest){
-		DetectAndTraceFacesResponse detectAndTraceFacesResponse = 
-				new DetectAndTraceFacesResponse();
-		detectAndTraceFacesResponse.setBase64EncodedImage("");
+		
+		Mat matImage = null;
+		
+		DetectAndTraceFacesResponse detectAndTraceFacesResponse = new DetectAndTraceFacesResponse();
+		
+		BufferedImage bi = null;  
+		
+		try{
+			matImage = computerVisionController.convertBase64ToByteArray(detectAndTraceFacesRequest.getBase64EncodedImage());
+			Mat tracedImage = computerVisionController.detectAndTraceFaces(matImage);
+			MatOfByte mob=new MatOfByte();
+			Imgcodecs.imencode(".png", tracedImage, mob);
+			byte ba[]=mob.toArray();
+			bi = ImageIO.read(new ByteArrayInputStream(ba));
+			detectAndTraceFacesResponse.setBase64EncodedImage(imgToBase64String(bi, "png"));
+		}
+		catch (RuntimeException runtimeException) {
+			throw runtimeException;
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
 		return detectAndTraceFacesResponse;
+	}
+
+	public static String imgToBase64String(final RenderedImage img, final String formatName)
+	{
+	  final ByteArrayOutputStream os = new ByteArrayOutputStream();
+	
+	  try
+	  {
+	    ImageIO.write(img, formatName, os);
+	    return Base64.getEncoder().encodeToString(os.toByteArray());
+	  }
+	  catch (final IOException ioe)
+	  {
+	    throw new UncheckedIOException(ioe);
+	  }
 	}
 
 	@Override
