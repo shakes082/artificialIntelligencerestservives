@@ -50,7 +50,7 @@ public class CamelRouteConfig extends RouteBuilder{
         
         .post("/detectFaces").
         id("detect-faces").consumes("application/json").produces("application/json").
-        description("Detect Faces In An Image").type(DetectFacesRequest[].class).
+        description("Detect faces in a base64 encoded image").type(DetectFacesRequest[].class).
         outType(DetectFacesResponse[].class).responseMessage().code(200).message("Detect Faces").
         endResponseMessage().to("bean:artificialintelligenceservice?method=detectFaces");
        

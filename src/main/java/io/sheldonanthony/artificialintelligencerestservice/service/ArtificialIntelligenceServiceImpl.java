@@ -15,9 +15,10 @@ public class ArtificialIntelligenceServiceImpl implements ArtificialIntelligence
 	}
 
 	@Override
-	public DetectFacesResponse detectFaces(DetectFacesRequest detectFacesRequest) {
-		// TODO Auto-generated method stub
-		return null;
+	public DetectFacesResponse detectFaces(DetectFacesRequest detectFacesRequest){
+		DetectFacesResponse detectFacesResponse = new DetectFacesResponse();
+		detectFacesResponse.setDetectedFaces(true);
+		return detectFacesResponse;
 	}
 
 }
