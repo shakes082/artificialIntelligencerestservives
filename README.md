@@ -43,11 +43,11 @@ http://127.0.0.1:8080/artificialintelligence/api-doc
 
 ### Ping
 
-Get Url: http://127.0.0.1:8080/artificialintelligence/ping
+Get Url: http://127.0.0.1:8080/artificialintelligence/serverconfiguration/ping
 
 Expected USSDResponse:
 
 ```
 {
-  "isAlive" : true
+  "alive" : true
 }
