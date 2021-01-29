@@ -1,5 +1,7 @@
 package io.sheldonanthony.artificialintelligencerestservice.dtos;
 
+import org.apache.commons.lang3.builder.ToStringBuilder;
+
 public class Ping {
 	
 	private boolean isAlive;
@@ -15,5 +17,9 @@ public class Ping {
 		this.isAlive = isAlive;
 	}
 	
-	
+	@Override
+	public String toString() {
+		return ToStringBuilder.reflectionToString(this);
+	}
+
 }

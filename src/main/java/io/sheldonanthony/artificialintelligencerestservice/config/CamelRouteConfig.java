@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
+import io.sheldonanthony.artificialintelligencerestservice.dtos.DetectFacesRequest;
+import io.sheldonanthony.artificialintelligencerestservice.dtos.DetectFacesResponse;
 import io.sheldonanthony.artificialintelligencerestservice.dtos.Ping;
 import static org.apache.camel.model.rest.RestParamType.body;
 import static org.apache.camel.model.rest.RestParamType.path;
@@ -37,8 +39,20 @@ public class CamelRouteConfig extends RouteBuilder{
             .apiProperty("api.title", "Artificial Intelligence Services")
             .apiProperty("api.version", "1.0.0");
         
-        rest("/ping").description("Ping Request").produces("application/json")
-        .get().description("").outType(Ping[].class).responseMessage().code(200).
-        message("Ping").endResponseMessage().to("bean:artificialintelligenceservice?method=ping");
+        rest("/serverconfiguration").description("Server Configurations").
+        produces("application/json").consumes("application/json").
+        	get("/ping").id("ping-server-request").description("Ping Server Request").
+        	outType(Ping[].class).responseMessage().code(200).message("Ping").
+        	endResponseMessage().to("bean:artificialintelligenceservice?method=ping");
+        
+        rest("/vision").apiDocs(true).description("Rest Services For Vision").produces("application/json")
+        .consumes("application/json").apiDocs(true).enableCORS(true)
+        
+        .post("/detectFaces").
+        id("detect-faces").consumes("application/json").produces("application/json").
+        description("Detect Faces In An Image").type(DetectFacesRequest[].class).
+        outType(DetectFacesResponse[].class).responseMessage().code(200).message("Detect Faces").
+        endResponseMessage().to("bean:artificialintelligenceservice?method=detectFaces");
+       
     }
 }
