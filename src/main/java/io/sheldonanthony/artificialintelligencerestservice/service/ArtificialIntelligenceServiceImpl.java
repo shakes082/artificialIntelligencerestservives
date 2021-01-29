@@ -1,5 +1,9 @@
 package io.sheldonanthony.artificialintelligencerestservice.service;
+import org.opencv.core.Mat;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
+import io.sheldonanthony.artificialintelligencerestservice.computervision.ComputerVisionController;
 import io.sheldonanthony.artificialintelligencerestservice.dtos.DetectAndTraceFacesRequest;
 import io.sheldonanthony.artificialintelligencerestservice.dtos.DetectAndTraceFacesResponse;
 import io.sheldonanthony.artificialintelligencerestservice.dtos.DetectFacesRequest;
@@ -10,6 +14,10 @@ import io.sheldonanthony.artificialintelligencerestservice.dtos.Ping;
 
 @Service("artificialintelligenceservice")
 public class ArtificialIntelligenceServiceImpl implements ArtificialIntelligenceServiceIF{
+	
+	@Autowired
+	@Qualifier("computerVisionController")
+	private ComputerVisionController computerVisionController;
 
 	@Override
 	public Ping ping(){
@@ -20,8 +28,22 @@ public class ArtificialIntelligenceServiceImpl implements ArtificialIntelligence
 
 	@Override
 	public DetectFacesResponse detectFaces(DetectFacesRequest detectFacesRequest){
+		
+		Mat matImage = null;
+		
+		boolean hasDetected = false;
+		
 		DetectFacesResponse detectFacesResponse = new DetectFacesResponse();
-		detectFacesResponse.setDetectedFaces(true);
+		
+		try {matImage = computerVisionController.convertBase64ToByteArray(detectFacesRequest.getBase64EncodedImage());
+			matImage = computerVisionController.convertBase64ToByteArray(detectFacesRequest.getBase64EncodedImage());
+			hasDetected = computerVisionController.detectFaces(matImage);
+			detectFacesResponse.setDetectedFaces(hasDetected);
+		}
+		catch (RuntimeException runtimeException) {
+			throw runtimeException;
+		}
+		
 		return detectFacesResponse;
 	}
 
