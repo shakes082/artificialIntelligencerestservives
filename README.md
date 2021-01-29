@@ -4,6 +4,10 @@ A rest service that will provide value by computing, performing voice or facial 
 
 ***Please note this project is currently in development**
 
+*Donate if project was useful:
+
+https://www.paypal.com/paypalme/SheldonLeandroZA
+
 ### What You Need
 
 About 15 minutes
