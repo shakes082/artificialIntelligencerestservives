@@ -6,8 +6,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
+
+import io.sheldonanthony.artificialintelligencerestservice.dtos.DetectAndTraceFacesRequest;
+import io.sheldonanthony.artificialintelligencerestservice.dtos.DetectAndTraceFacesResponse;
 import io.sheldonanthony.artificialintelligencerestservice.dtos.DetectFacesRequest;
 import io.sheldonanthony.artificialintelligencerestservice.dtos.DetectFacesResponse;
+import io.sheldonanthony.artificialintelligencerestservice.dtos.DetectIfFacesAreWearingMasksRequest;
+import io.sheldonanthony.artificialintelligencerestservice.dtos.DetectIfFacesAreWearingMasksResponse;
 import io.sheldonanthony.artificialintelligencerestservice.dtos.Ping;
 import static org.apache.camel.model.rest.RestParamType.body;
 import static org.apache.camel.model.rest.RestParamType.path;
@@ -48,11 +53,23 @@ public class CamelRouteConfig extends RouteBuilder{
         rest("/vision").apiDocs(true).description("Rest Services For Vision").produces("application/json")
         .consumes("application/json").apiDocs(true).enableCORS(true)
         
-        .post("/detectFaces").
-        id("detect-faces").consumes("application/json").produces("application/json").
-        description("Detect faces in a base64 encoded image").type(DetectFacesRequest[].class).
-        outType(DetectFacesResponse[].class).responseMessage().code(200).message("Detect Faces").
-        endResponseMessage().to("bean:artificialintelligenceservice?method=detectFaces");
+	        .post("/detectFaces").
+	        id("detect-faces").consumes("application/json").produces("application/json").
+	        description("Detect faces in a base64 encoded image").type(DetectFacesRequest[].class).
+	        outType(DetectFacesResponse[].class).responseMessage().code(200).message("Detect Faces").
+	        endResponseMessage().to("bean:artificialintelligenceservice?method=detectFaces")
+        
+	        .post("/detectAndTraceFaces").
+	        id("detect-trace-faces").consumes("application/json").produces("application/json").
+	        description("Detect and trace faces in a base64 encoded image").type(DetectAndTraceFacesRequest[].class).
+	        outType(DetectAndTraceFacesResponse[].class).responseMessage().code(200).message("Detect And Trace Faces").
+	        endResponseMessage().to("bean:artificialintelligenceservice?method=detectAndTraceFaces")
+	        
+	        .post("/detectIfFacesAreWearingMasks").
+	        id("detect-faces-wearing-masks").consumes("application/json").produces("application/json").
+	        description("Detect if faces are wearing masks in a base64 encoded image").type(DetectIfFacesAreWearingMasksRequest[].class).
+	        outType(DetectIfFacesAreWearingMasksResponse[].class).responseMessage().code(200).message("Detect Masks").
+	        endResponseMessage().to("bean:artificialintelligenceservice?method=detectIfFaceWearingMask");
        
     }
 }
