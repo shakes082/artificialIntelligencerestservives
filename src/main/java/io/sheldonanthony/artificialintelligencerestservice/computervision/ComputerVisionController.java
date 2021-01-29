@@ -1,5 +1,4 @@
 package io.sheldonanthony.artificialintelligencerestservice.computervision;
-import org.apache.commons.codec.binary.Base64;
 import org.opencv.core.Mat;
 import org.opencv.core.MatOfByte;
 import org.opencv.core.MatOfRect;
@@ -36,7 +35,6 @@ public class ComputerVisionController{
 	 * @return @{link Boolean}
 	 */
 	public boolean detectFaces(Mat imageMat) {
-		
 		
 		CascadeClassifier faceDetector = new CascadeClassifier(faceDetectorCascadeClassifier);
 		
