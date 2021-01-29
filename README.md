@@ -38,4 +38,5 @@ If you use Maven, run the following command in a terminal window (in the complet
 Open up your favourite browser and go to the following address:
 
 Rest Endpoint API Docs:
-(http://127.0.0.1:8080/artificialintelligence/api-doc)
+
+( http://127.0.0.1:8080/artificialintelligence/api-doc )
