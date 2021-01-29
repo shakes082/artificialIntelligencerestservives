@@ -2,7 +2,7 @@
 
 A rest service that will provide value by computing, performing voice or facial recognition, responding to human prompts, and sense and monitor human activity.
 
-**Please note this project is currently in development **
+**Please note this project is currently in development**
 
 ### What You Need
 
@@ -82,6 +82,30 @@ Sample Response:
 ```
 {
   "detectedFaces" : false
+}
+
+```
+
+### Detect And Trace Faces In A Base64 Encoded Image
+
+Rest Action: Post
+
+Url: http://127.0.0.1:8080/artificialintelligence/vision/detectAndTraceFaces
+
+Sample Request:
+```
+{
+  uuid: "977f3840-61fe-11eb-ae93-0242ac130002",
+  base64EncodedImage: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVQYV2NgYAAAAAMAAWgmWQ0AAAAASUVORK5CYII="
+}
+
+```
+
+Sample Response:
+
+```
+{
+  base64EncodedImage: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVQYV2NgYAAAAAMAAWgmWQ0AAAAASUVORK5CYII="
 }
 
 ```
