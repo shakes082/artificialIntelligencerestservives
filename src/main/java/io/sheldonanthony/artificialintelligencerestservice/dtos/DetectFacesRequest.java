@@ -2,13 +2,25 @@ package io.sheldonanthony.artificialintelligencerestservice.dtos;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+
+@JsonPropertyOrder({"uuid", "base64EncodedImage"})
 public class DetectFacesRequest{
 	
+	@JsonProperty
 	private String uuid;
 	
+	@JsonProperty
 	private String base64EncodedImage; 
 	
 	public DetectFacesRequest(){
+	}
+
+	public DetectFacesRequest(String uuid, String base64EncodedImage) {
+		super();
+		this.uuid = uuid;
+		this.base64EncodedImage = base64EncodedImage;
 	}
 
 	public String getUuid() {

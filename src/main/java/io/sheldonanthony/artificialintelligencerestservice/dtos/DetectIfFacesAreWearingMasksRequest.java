@@ -10,6 +10,15 @@ public final class DetectIfFacesAreWearingMasksRequest {
 	
 	public DetectIfFacesAreWearingMasksRequest(){
 	}
+	
+
+	public DetectIfFacesAreWearingMasksRequest(String uuid, String base64EncodedImage) {
+		super();
+		this.uuid = uuid;
+		this.base64EncodedImage = base64EncodedImage;
+	}
+
+
 
 	public String getUuid() {
 		return uuid;

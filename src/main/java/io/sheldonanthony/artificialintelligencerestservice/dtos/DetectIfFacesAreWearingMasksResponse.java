@@ -8,6 +8,11 @@ public final class DetectIfFacesAreWearingMasksResponse {
 	
 	public DetectIfFacesAreWearingMasksResponse(){
 	}
+	
+	public DetectIfFacesAreWearingMasksResponse(boolean wearingMask) {
+		super();
+		this.wearingMask = wearingMask;
+	}
 
 	public boolean isWearingMask() {
 		return wearingMask;

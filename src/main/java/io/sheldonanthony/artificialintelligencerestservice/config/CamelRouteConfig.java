@@ -47,29 +47,26 @@ public class CamelRouteConfig extends RouteBuilder{
         rest("/serverconfiguration").description("Server Configurations").
         produces("application/json").consumes("application/json").
         	get("/ping").id("ping-server-request").description("Ping Server Request").
-        	outType(Ping[].class).responseMessage().code(200).message("Ping").
+        	outType(Ping.class).responseMessage().code(200).message("Ping").
         	endResponseMessage().to("bean:artificialintelligenceservice?method=ping");
         
         rest("/vision").apiDocs(true).description("Rest Services For Vision").produces("application/json")
         .consumes("application/json").apiDocs(true).enableCORS(true)
         
-	        .post("/detectFaces").
-	        id("detect-faces").consumes("application/json").produces("application/json").
-	        description("Detect faces in a base64 encoded image").type(DetectFacesRequest[].class).
-	        outType(DetectFacesResponse[].class).responseMessage().code(200).message("Detect Faces").
-	        endResponseMessage().to("bean:artificialintelligenceservice?method=detectFaces")
+	        .post("/detectFaces").id("detect-faces")
+	        .description("Detect faces in a base64 encoded image")
+	        .type(DetectFacesRequest.class).outType(DetectFacesResponse.class)
+	        .responseMessage().endResponseMessage().to("bean:artificialintelligenceservice?method=detectFaces")
         
-	        .post("/detectAndTraceFaces").
-	        id("detect-trace-faces").consumes("application/json").produces("application/json").
-	        description("Detect and trace faces in a base64 encoded image").type(DetectAndTraceFacesRequest[].class).
-	        outType(DetectAndTraceFacesResponse[].class).responseMessage().code(200).message("Detect And Trace Faces").
-	        endResponseMessage().to("bean:artificialintelligenceservice?method=detectAndTraceFaces")
+	        .post("/detectAndTraceFaces").id("detect-trace-faces")
+	        .description("Detect and trace faces in a base64 encoded image")
+	        .type(DetectAndTraceFacesRequest.class).outType(DetectAndTraceFacesResponse.class)
+	        .responseMessage().endResponseMessage().to("bean:artificialintelligenceservice?method=detectAndTraceFaces")
 	        
-	        .post("/detectIfFacesAreWearingMasks").
-	        id("detect-faces-wearing-masks").consumes("application/json").produces("application/json").
-	        description("Detect if faces are wearing masks in a base64 encoded image").type(DetectIfFacesAreWearingMasksRequest[].class).
-	        outType(DetectIfFacesAreWearingMasksResponse[].class).responseMessage().code(200).message("Detect Masks").
-	        endResponseMessage().to("bean:artificialintelligenceservice?method=detectIfFaceWearingMask");
+	        .post("/detectIfFacesAreWearingMasks").id("detect-faces-wearing-masks")
+	        .description("Detect if faces are wearing masks in a base64 encoded image")
+	        .type(DetectIfFacesAreWearingMasksRequest.class).outType(DetectIfFacesAreWearingMasksResponse.class)
+	        .responseMessage().endResponseMessage().to("bean:artificialintelligenceservice?method=detectIfFaceWearingMask");
        
     }
 }

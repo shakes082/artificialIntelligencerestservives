@@ -11,6 +11,12 @@ public final class DetectAndTraceFacesRequest{
 	public DetectAndTraceFacesRequest(){
 	}
 
+	public DetectAndTraceFacesRequest(String uuid, String base64EncodedImage) {
+		super();
+		this.uuid = uuid;
+		this.base64EncodedImage = base64EncodedImage;
+	}
+
 	public String getUuid() {
 		return uuid;
 	}

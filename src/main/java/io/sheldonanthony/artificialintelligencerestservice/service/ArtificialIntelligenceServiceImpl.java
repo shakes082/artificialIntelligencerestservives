@@ -35,7 +35,7 @@ public class ArtificialIntelligenceServiceImpl implements ArtificialIntelligence
 		
 		DetectFacesResponse detectFacesResponse = new DetectFacesResponse();
 		
-		try {matImage = computerVisionController.convertBase64ToByteArray(detectFacesRequest.getBase64EncodedImage());
+		try{
 			matImage = computerVisionController.convertBase64ToByteArray(detectFacesRequest.getBase64EncodedImage());
 			hasDetected = computerVisionController.detectFaces(matImage);
 			detectFacesResponse.setDetectedFaces(hasDetected);

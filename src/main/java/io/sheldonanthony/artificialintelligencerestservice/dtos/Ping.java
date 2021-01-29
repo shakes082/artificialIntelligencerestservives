@@ -8,7 +8,12 @@ public class Ping {
 	
 	public Ping(){
 	}
-
+	
+	public Ping(boolean isAlive) {
+		super();
+		this.isAlive = isAlive;
+	}
+	
 	public boolean isAlive() {
 		return isAlive;
 	}

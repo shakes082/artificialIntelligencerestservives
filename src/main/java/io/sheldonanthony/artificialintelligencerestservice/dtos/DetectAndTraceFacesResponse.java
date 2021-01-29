@@ -8,7 +8,12 @@ public final class DetectAndTraceFacesResponse{
 	
 	public DetectAndTraceFacesResponse(){
 	}
-	
+
+	public DetectAndTraceFacesResponse(String base64EncodedImage) {
+		super();
+		this.base64EncodedImage = base64EncodedImage;
+	}
+
 	public String getBase64EncodedImage() {
 		return base64EncodedImage;
 	}
