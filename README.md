@@ -24,7 +24,7 @@ GIT
 
 ``` cd artificialintelligencerestservices ```
 
-Copy the folder in artificialintelligencerestservice/src/main/resources/opencv/haarcascades to a physical location on pc that is readable by a webserver.
+Copy the folder in artificialintelligencerestservice/src/main/resources/opencv/haarcascades to a physical location on your pc that is readable by a webserver.
 Modify the the following file application.properties and change the property opencv.faceDetectorCascadeClassifier to point to the location on your specificied above.
 
 ### Run the Application
