@@ -40,3 +40,14 @@ Open up your favourite browser and go to the following address:
 Rest Endpoint API Docs:
 
 http://127.0.0.1:8080/artificialintelligence/api-doc
+
+### Ping
+
+Get Url: http://127.0.0.1:8080/artificialintelligence/ping
+
+Expected USSDResponse:
+
+```
+{
+  "isAlive" : true
+}
