@@ -1,12 +1,10 @@
 package io.sheldonanthony.artificialintelligencerestservice.config;
-import org.apache.camel.Exchange;
 import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.model.rest.RestBindingMode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
-
 import io.sheldonanthony.artificialintelligencerestservice.dtos.DetectAndTraceFacesRequest;
 import io.sheldonanthony.artificialintelligencerestservice.dtos.DetectAndTraceFacesResponse;
 import io.sheldonanthony.artificialintelligencerestservice.dtos.DetectFacesRequest;
@@ -14,8 +12,32 @@ import io.sheldonanthony.artificialintelligencerestservice.dtos.DetectFacesRespo
 import io.sheldonanthony.artificialintelligencerestservice.dtos.DetectIfFacesAreWearingMasksRequest;
 import io.sheldonanthony.artificialintelligencerestservice.dtos.DetectIfFacesAreWearingMasksResponse;
 import io.sheldonanthony.artificialintelligencerestservice.dtos.Ping;
-import static org.apache.camel.model.rest.RestParamType.body;
-import static org.apache.camel.model.rest.RestParamType.path;
+
+/*
+ * Copyright (c) 2020, Sheldon Anthony
+ * All rights reserved.
+ * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
+ *
+ * This code is free software; you can redistribute it and/or modify it
+ * under the terms of the GNU General Public License version 2 only, as
+ * published by the Free Software Foundation.  
+ * 
+ * This code is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+ * FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License
+ * version 2 for more details (a copy is included in the LICENSE file that
+ * accompanied this code).
+ *
+ * You should have received a copy of the GNU General Public License version
+ * 2 along with this work; if not, write to the Free Software Foundation,
+ * Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA.
+ *
+ * Please contact Sheldon Anthony, PostNet Suite 129,
+ * Private Bag X 1510, Glenvista, 2058, Johannesburg, South Africa
+ * or visit https://shakes082.github.io/sheldonanthonyio.github.io/
+ * if you need additional information
+ *  or have any questions.
+ */
 
 @Configuration
 public class CamelRouteConfig extends RouteBuilder{

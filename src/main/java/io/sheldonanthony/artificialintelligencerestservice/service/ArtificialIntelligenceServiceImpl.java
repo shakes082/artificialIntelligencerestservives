@@ -1,17 +1,5 @@
 package io.sheldonanthony.artificialintelligencerestservice.service;
-import java.awt.image.BufferedImage;
-import java.awt.image.DataBufferByte;
-import java.awt.image.RenderedImage;
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.io.UncheckedIOException;
-import java.util.Base64;
-
-import javax.imageio.ImageIO;
 import org.opencv.core.Mat;
-import org.opencv.core.MatOfByte;
-import org.opencv.imgcodecs.Imgcodecs;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -23,6 +11,32 @@ import io.sheldonanthony.artificialintelligencerestservice.dtos.DetectFacesRespo
 import io.sheldonanthony.artificialintelligencerestservice.dtos.DetectIfFacesAreWearingMasksRequest;
 import io.sheldonanthony.artificialintelligencerestservice.dtos.DetectIfFacesAreWearingMasksResponse;
 import io.sheldonanthony.artificialintelligencerestservice.dtos.Ping;
+
+/*
+ * Copyright (c) 2020, Sheldon Anthony
+ * All rights reserved.
+ * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
+ *
+ * This code is free software; you can redistribute it and/or modify it
+ * under the terms of the GNU General Public License version 2 only, as
+ * published by the Free Software Foundation.  
+ * 
+ * This code is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+ * FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License
+ * version 2 for more details (a copy is included in the LICENSE file that
+ * accompanied this code).
+ *
+ * You should have received a copy of the GNU General Public License version
+ * 2 along with this work; if not, write to the Free Software Foundation,
+ * Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA.
+ *
+ * Please contact Sheldon Anthony, PostNet Suite 129,
+ * Private Bag X 1510, Glenvista, 2058, Johannesburg, South Africa
+ * or visit https://shakes082.github.io/sheldonanthonyio.github.io/
+ * if you need additional information
+ *  or have any questions.
+ */
 
 @Service("artificialintelligenceservice")
 public class ArtificialIntelligenceServiceImpl implements ArtificialIntelligenceServiceIF{
@@ -63,43 +77,19 @@ public class ArtificialIntelligenceServiceImpl implements ArtificialIntelligence
 	public DetectAndTraceFacesResponse detectAndTraceFaces(DetectAndTraceFacesRequest 
 			detectAndTraceFacesRequest){
 		
-		Mat matImage = null;
-		
 		DetectAndTraceFacesResponse detectAndTraceFacesResponse = new DetectAndTraceFacesResponse();
-		
-		BufferedImage bi = null;  
-		
+	
 		try{
-			matImage = computerVisionController.convertBase64ToByteArray(detectAndTraceFacesRequest.getBase64EncodedImage());
+			Mat matImage = computerVisionController.convertBase64ToByteArray(detectAndTraceFacesRequest.getBase64EncodedImage());
 			Mat tracedImage = computerVisionController.detectAndTraceFaces(matImage);
-			MatOfByte mob=new MatOfByte();
-			Imgcodecs.imencode(".png", tracedImage, mob);
-			byte ba[]=mob.toArray();
-			bi = ImageIO.read(new ByteArrayInputStream(ba));
-			detectAndTraceFacesResponse.setBase64EncodedImage(imgToBase64String(bi, "png"));
+			String base64String = computerVisionController.convertMatToBase64(tracedImage); 
+			detectAndTraceFacesResponse.setBase64EncodedImage(base64String);
 		}
 		catch (RuntimeException runtimeException) {
 			throw runtimeException;
-		} catch (IOException e) {
-			e.printStackTrace();
 		}
 		
 		return detectAndTraceFacesResponse;
-	}
-
-	public static String imgToBase64String(final RenderedImage img, final String formatName)
-	{
-	  final ByteArrayOutputStream os = new ByteArrayOutputStream();
-	
-	  try
-	  {
-	    ImageIO.write(img, formatName, os);
-	    return Base64.getEncoder().encodeToString(os.toByteArray());
-	  }
-	  catch (final IOException ioe)
-	  {
-	    throw new UncheckedIOException(ioe);
-	  }
 	}
 
 	@Override
