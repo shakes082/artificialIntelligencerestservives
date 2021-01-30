@@ -97,7 +97,15 @@ public class ArtificialIntelligenceServiceImpl implements ArtificialIntelligence
 			DetectIfFacesAreWearingMasksRequest detectIfFacesAreWearingMasksRequest){
 		DetectIfFacesAreWearingMasksResponse detectIfFacesAreWearingMasksResponse = 
 				new DetectIfFacesAreWearingMasksResponse();
-		detectIfFacesAreWearingMasksResponse.setWearingMask(true);
+		try{
+			Mat matImage = computerVisionController.convertBase64ToByteArray(detectIfFacesAreWearingMasksRequest.getBase64EncodedImage());
+			boolean isWearingMask = computerVisionController.detectIfFacesAreWearingMasksRequest(matImage); 
+			detectIfFacesAreWearingMasksResponse.setWearingMask(isWearingMask);
+		}
+		catch (RuntimeException runtimeException) {
+			throw runtimeException;
+		}
+		
 		return detectIfFacesAreWearingMasksResponse;
 	}
 	

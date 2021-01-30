@@ -58,6 +58,9 @@ public class ComputerVisionController{
 	@Value("${opencv.faceDetectorCascadeClassifier}")
 	private String faceDetectorCascadeClassifier;
 	
+	@Value("${opencv.mouthDetectorCascadeClassifier}")
+	private String mouthDetectorCascadeClassifier;
+	
 	static{
 		OpenCV.loadLocally();
 	}
@@ -85,7 +88,6 @@ public class ComputerVisionController{
 	}
 
 	/**
-	 * 
 	 * @param mat
 	 * @return {@link String}
 	 */
@@ -162,7 +164,8 @@ public class ComputerVisionController{
 	 * @param imageMat
 	 * @return {@link Mat}
 	 */
-	public Mat detectAndTraceFaces(Mat imageMat) {
+	public Mat detectAndTraceFaces(Mat imageMat){
+		
 		CascadeClassifier faceDetector = new CascadeClassifier(faceDetectorCascadeClassifier);
 		
 		MatOfRect faceDetections = new MatOfRect();
@@ -191,5 +194,66 @@ public class ComputerVisionController{
 		 }
 		
 		return imageMat.clone();
+	}
+
+	/**
+	 * @param imageMat
+	 * @return {@link Boolean}
+	 */
+	public boolean detectIfFacesAreWearingMasksRequest(Mat imageMat) {
+		
+		CascadeClassifier faceDetector = new CascadeClassifier(faceDetectorCascadeClassifier);
+		
+		MatOfRect faceDetections = new MatOfRect();
+		Mat grayScaledMat = new Mat();
+		
+		// convert the frame in gray scale
+		Imgproc.cvtColor(imageMat, grayScaledMat, Imgproc.COLOR_RGB2GRAY);
+		
+		// equalize the frame histogram to improve the result
+		Imgproc.equalizeHist(grayScaledMat, grayScaledMat);
+		
+		int height = grayScaledMat.rows();
+		
+		int size = 0;
+		
+		if (Math.round(height * 0.2f) > 0)
+		{
+			size = Math.round(height * 0.2f);
+		}
+		
+		faceDetector.detectMultiScale(grayScaledMat, faceDetections, 1.1, 2, 0 | 
+				Objdetect.CASCADE_SCALE_IMAGE, new Size(size, size), new Size());
+		
+		Rect[] facesArray = faceDetections.toArray();
+		
+		boolean wearingMask = true;
+		
+		MatOfRect mouthDetections = new MatOfRect();
+		
+		for (int i = 0; i < facesArray.length; i++){
+			
+			CascadeClassifier mouthDetector = new CascadeClassifier(faceDetectorCascadeClassifier);
+			
+			Mat faceMat = new Mat(imageMat, facesArray[i].clone());
+
+			int faceHeight = grayScaledMat.rows();
+			
+			int faceSize = 0;
+
+			if (Math.round(faceHeight * 0.2f) > 0)
+			{
+				faceSize = Math.round(faceHeight * 0.2f);
+			}
+			
+			mouthDetector.detectMultiScale(faceMat, mouthDetections, 1.1, 2, 0 | 
+					Objdetect.CASCADE_SCALE_IMAGE, new Size(faceSize, faceSize), new Size());
+			
+			if(mouthDetections.toArray().length >= 1) {
+				wearingMask = false;
+			}
+		 }
+		
+		return wearingMask;
 	}
 }
