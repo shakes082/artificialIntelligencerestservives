@@ -34,5 +34,5 @@ class ArtificialintelligenceRestServiceApplicationTests {
 	@Test
 	void contextLoads() {
 	}
-
+	
 }

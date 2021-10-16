@@ -38,15 +38,26 @@ public final class DetectFacesResponse{
 	public DetectFacesResponse(){
 	}
 
+	/**
+	 * @param detectedFaces
+	 */
 	public DetectFacesResponse(boolean detectedFaces) {
 		super();
 		this.detectedFaces = detectedFaces;
 	}
 
+	/**
+	 * 
+	 * @return {@link boolean}
+	 */
 	public boolean isDetectedFaces() {
 		return detectedFaces;
 	}
 	
+	/**
+	 * 
+	 * @param detectedFaces
+	 */
 	public void setDetectedFaces(boolean detectedFaces) {
 		this.detectedFaces = detectedFaces;
 	}

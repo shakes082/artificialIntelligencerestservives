@@ -38,27 +38,47 @@ public final class DetectIfFacesAreWearingMasksRequest {
 	@JsonProperty
 	private String base64EncodedImage; 
 	
+	/**
+	 * 
+	 */
 	public DetectIfFacesAreWearingMasksRequest(){
 	}
 	
+	/**
+	 * @param uuid
+	 * @param base64EncodedImage
+	 */
 	public DetectIfFacesAreWearingMasksRequest(String uuid, String base64EncodedImage) {
 		super();
 		this.uuid = uuid;
 		this.base64EncodedImage = base64EncodedImage;
 	}
 
+	/**
+	 * @return {@link String}
+	 */
 	public String getUuid() {
 		return uuid;
 	}
 
+	/**
+	 * 
+	 * @param uuid
+	 */
 	public void setUuid(String uuid) {
 		this.uuid = uuid;
 	}
 
+	/**
+	 * @return {link String}
+	 */
 	public String getBase64EncodedImage() {
 		return base64EncodedImage;
 	}
 
+	/**
+	 * @param base64EncodedImage
+	 */
 	public void setBase64EncodedImage(String base64EncodedImage) {
 		this.base64EncodedImage = base64EncodedImage;
 	}

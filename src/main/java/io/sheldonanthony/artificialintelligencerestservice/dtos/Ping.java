@@ -32,18 +32,30 @@ public class Ping {
 	
 	private boolean isAlive;
 	
+	/**
+	 * 
+	 */
 	public Ping(){
 	}
 	
+	/**
+	 * @param isAlive
+	 */
 	public Ping(boolean isAlive) {
 		super();
 		this.isAlive = isAlive;
 	}
 	
+	/**
+	 * @return {@link boolean}
+	 */
 	public boolean isAlive() {
 		return isAlive;
 	}
 
+	/**
+	 * @param isAlive
+	 */
 	public void setAlive(boolean isAlive) {
 		this.isAlive = isAlive;
 	}

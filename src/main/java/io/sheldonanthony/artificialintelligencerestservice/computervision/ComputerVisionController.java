@@ -143,8 +143,7 @@ public class ComputerVisionController{
 		
 		int height = grayScaledMat.rows();
 		int size = 0;
-		if (Math.round(height * 0.2f) > 0)
-		{
+		if (Math.round(height * 0.2f) > 0){
 			size = Math.round(height * 0.2f);
 		}
 		

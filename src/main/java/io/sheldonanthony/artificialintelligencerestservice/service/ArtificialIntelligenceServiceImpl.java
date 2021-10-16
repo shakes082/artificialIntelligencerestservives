@@ -45,6 +45,9 @@ public class ArtificialIntelligenceServiceImpl implements ArtificialIntelligence
 	@Qualifier("computerVisionController")
 	private ComputerVisionController computerVisionController;
 
+	/**
+	 * 
+	 */
 	@Override
 	public Ping ping(){
 		Ping ping = new Ping();
@@ -52,6 +55,9 @@ public class ArtificialIntelligenceServiceImpl implements ArtificialIntelligence
 		return ping;
 	}
 
+	/**
+	 * 
+	 */
 	@Override
 	public DetectFacesResponse detectFaces(DetectFacesRequest detectFacesRequest){
 		
@@ -73,6 +79,9 @@ public class ArtificialIntelligenceServiceImpl implements ArtificialIntelligence
 		return detectFacesResponse;
 	}
 
+	/**
+	 * 
+	 */
 	@Override
 	public DetectAndTraceFacesResponse detectAndTraceFaces(DetectAndTraceFacesRequest 
 			detectAndTraceFacesRequest){
@@ -92,6 +101,9 @@ public class ArtificialIntelligenceServiceImpl implements ArtificialIntelligence
 		return detectAndTraceFacesResponse;
 	}
 
+	/**
+	 * 
+	 */
 	@Override
 	public DetectIfFacesAreWearingMasksResponse detectIfFaceWearingMask(
 			DetectIfFacesAreWearingMasksRequest detectIfFacesAreWearingMasksRequest){

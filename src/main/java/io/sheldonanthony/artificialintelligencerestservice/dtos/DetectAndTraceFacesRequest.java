@@ -1,4 +1,5 @@
 package io.sheldonanthony.artificialintelligencerestservice.dtos;
+import javax.validation.constraints.NotBlank;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
@@ -32,33 +33,55 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 @JsonPropertyOrder({"uuid", "base64EncodedImage"})
 public final class DetectAndTraceFacesRequest{
 
+	@NotBlank(message = "uuid cannot be null or blank")
 	@JsonProperty
 	private String uuid;
 	
+	@NotBlank(message = "uuid cannot be null or blank")
 	@JsonProperty
 	private String base64EncodedImage; 
 	
 	public DetectAndTraceFacesRequest(){
 	}
 
-	public DetectAndTraceFacesRequest(String uuid, String base64EncodedImage) {
+	/**
+	 * 
+	 * @param uuid
+	 * @param base64EncodedImage
+	 */
+	public DetectAndTraceFacesRequest(@NotBlank String uuid, @NotBlank String base64EncodedImage) {
 		super();
 		this.uuid = uuid;
 		this.base64EncodedImage = base64EncodedImage;
 	}
 
+	/**
+	 * 
+	 * @return
+	 */
 	public String getUuid() {
 		return uuid;
 	}
 
+	/**
+	 * 
+	 * @param uuid
+	 */
 	public void setUuid(String uuid) {
 		this.uuid = uuid;
 	}
 
+	/**
+	 * 
+	 * @return
+	 */
 	public String getBase64EncodedImage() {
 		return base64EncodedImage;
 	}
 
+	/**
+	 * @param base64EncodedImage
+	 */
 	public void setBase64EncodedImage(String base64EncodedImage) {
 		this.base64EncodedImage = base64EncodedImage;
 	}

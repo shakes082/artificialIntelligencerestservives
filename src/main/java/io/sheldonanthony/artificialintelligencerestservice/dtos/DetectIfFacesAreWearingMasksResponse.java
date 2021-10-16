@@ -1,5 +1,4 @@
 package io.sheldonanthony.artificialintelligencerestservice.dtos;
-
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
 /*
@@ -32,18 +31,30 @@ public final class DetectIfFacesAreWearingMasksResponse {
 
 	private boolean wearingMask;
 	
+	/**
+	 * 
+	 */
 	public DetectIfFacesAreWearingMasksResponse(){
 	}
 	
+	/**
+	 * @param wearingMask
+	 */
 	public DetectIfFacesAreWearingMasksResponse(boolean wearingMask) {
 		super();
 		this.wearingMask = wearingMask;
 	}
 
+	/**
+	 * @return {link boolean}
+	 */
 	public boolean isWearingMask() {
 		return wearingMask;
 	}
 
+	/** 
+	 * @param wearingMask
+	 */
 	public void setWearingMask(boolean wearingMask) {
 		this.wearingMask = wearingMask;
 	}

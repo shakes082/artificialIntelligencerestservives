@@ -37,11 +37,23 @@ public interface ArtificialIntelligenceServiceIF{
 
 	Ping ping();
 	
+	/**
+	 * @param detectFacesRequest
+	 * @return {@link DetectFacesResponse}
+	 */
 	DetectFacesResponse detectFaces(DetectFacesRequest detectFacesRequest);
 	
+	/**
+	 * @param detectAndTraceFacesRequest
+	 * @return {@link DetectAndTraceFacesResponse}
+	 */
 	DetectAndTraceFacesResponse detectAndTraceFaces(DetectAndTraceFacesRequest 
 			detectAndTraceFacesRequest);
 	
+	/**
+	 * @param detectIfFacesAreWearingMasksRequest
+	 * @return {@link DetectIfFacesAreWearingMasksResponse}
+	 */
 	DetectIfFacesAreWearingMasksResponse detectIfFaceWearingMask(DetectIfFacesAreWearingMasksRequest 
 			detectIfFacesAreWearingMasksRequest); 
 }

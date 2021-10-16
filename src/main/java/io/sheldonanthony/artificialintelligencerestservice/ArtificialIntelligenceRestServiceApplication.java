@@ -35,6 +35,10 @@ public class ArtificialIntelligenceRestServiceApplication{
 	private static Logger LOGGER = 
 			LogManager.getLogger(ArtificialIntelligenceRestServiceApplication.class);
 	
+	/**
+	 * 
+	 * @param args
+	 */
 	public static void main(String[] args){
 		LOGGER.info("Initialized ArtificialIntelligenceRestServiceApplication->main()");
         SpringApplication.run(ArtificialIntelligenceRestServiceApplication.class, args);
